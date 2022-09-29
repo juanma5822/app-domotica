@@ -9,11 +9,11 @@ import {
   StackedBarChart
 } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
+import {getData} from './connection/connection'
 
+const retrieveData = getData()
 
-
-
-
+console.log('RETRIEVED DATA: ', retrieveData)
 
 const screenWidth = Dimensions.get("window").width;
 const data1 = {
@@ -24,7 +24,7 @@ const chartConfig = {
   backgroundGradientFrom: "#fefefe", // lado izquierdo color opacidad
   backgroundGradientFromOpacity: 0,
   backgroundGradientTo: "#fefefe", //lado derecho color opacidad
-  backgroundGradientToOpacity: 0.5,
+  backgroundGradientToOpacity: 0.8,
   color: (opacity = 100) => `rgba(8,7,7)`, // Cambia color leyenda
   strokeWidth: 3, // optional, default 3
   barPercentage: 0.5,
@@ -35,7 +35,7 @@ const data = {
   labels: ["January", "February", "March", "April", "May", "June"],
   datasets: [
     {
-      data: [20, 45, 28, 80, 99, 43],
+      data: retrieveData,
       color: (opacity = 0) => `rgba(224,36,8)`, // optional
       strokeWidth: 1 // optional
     }
@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     <ScrollView>
-      <Text style={{ justifyContent: "center", alignItems: "center" }} >Some more text</Text>
+      <Text style={{ justifyContent: "center", alignItems: "center", textAlign:"center" }} >Some more text</Text>
       <View style={{ justifyContent: "left", alignItems: "left" }}>
         
         
@@ -71,7 +71,9 @@ const App = () => {
       <Pressable
         onPress={() => {
           SetlightPressed((current) => current + 1);
+          retrieveData()
         }}
+        
         style={({ pressed }) => [
           {
             backgroundColor: pressed
