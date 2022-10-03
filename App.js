@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { Text, View, SafeAreaView, StyleSheet, Dimensions  } from "react-native"
+import { LineChart, ProgressChart } from "react-native-chart-kit"
+import ExampleChart from "./components/Example"
+import Indicator from "./components/Indicator"
 
-export default function App() {
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaView>
+      <View style = {styles.container} >
+        <ExampleChart title='example variable'/>
+        <Indicator title='example variable'/>
+        
+      </View>
+    </SafeAreaView>
+  )
 }
 
-const styles = StyleSheet.create({
+
+
+const styles = StyleSheet.create({  
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'center', 
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+   },
+})
+
+
+export default App
