@@ -10,11 +10,6 @@ import {
 } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 
-
-
-
-
-
 const screenWidth = Dimensions.get("window").width;
 const data1 = {
   labels: ["Swim", "Bike", "Run"], // optional
@@ -56,7 +51,7 @@ const App = () => {
 
   return (
     <ScrollView>
-      <Text style={{ justifyContent: "center", alignItems: "center" }} >Some more text</Text>
+      <Text style={{alignItems: 'center',textAlign:'center'}} >App Domotica Asdruval</Text>
       <View style={{ justifyContent: "left", alignItems: "left" }}>
         
         
@@ -89,14 +84,14 @@ const App = () => {
       <View style={styles.logBox}>
         <Text testID="pressable_press_console">{textLog}</Text>
       </View>
-      <LineChart
+      {/* <LineChart
         data={data}
         width={400}
         height={300}
         chartConfig={chartConfig}
         bezier
-      />
-      <ProgressChart
+      /> */}
+      {/* <ProgressChart
         data={data1}
         width={screenWidth}
         height={220}
@@ -104,7 +99,7 @@ const App = () => {
         radius={32}
         chartConfig={chartConfig}
         hideLegend={false}
-      />
+      /> */}
         
     </ScrollView>
   );
@@ -115,7 +110,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: 16
+    fontSize: 18
   },
   wrapperCustom: {
     borderRadius: 8,
@@ -126,6 +121,8 @@ const styles = StyleSheet.create({
     width:80,
     height:50,
     justifyContent: 'center',
+    
+    
   },
   logBox: {
     padding: 20,
@@ -133,7 +130,14 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#f0f0f0',
     backgroundColor: '#f9f9f9'
-  }
+  },
+  text2: {
+    fontSize: 16,
+    justifyContent: 'center',    
+    flex: .5,
+    flexDirection: 'row',
+    alignItems: 'center' 
+  },
 });
 
 export default App;
