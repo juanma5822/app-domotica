@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, update } from "firebase/database";
+import { getDatabase, ref, onValue, update, get } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,27 +19,19 @@ measurementId: "G-ZGXQHRLYR4"
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-console.log('APP NAME: ', app.name);
+const db = getDatabase(app);
 
-export function getData () {
-  let returnArr = []
-  let helper = []
-  console.log('getting data from firebase');
-  const db =  getDatabase()
-  const dbState = ref(db, 'Estado', )
-  try {
-    onValue(dbState, (snapshot) => {
-      let data = snapshot.val();
-      console.log("DATA RETURNED=================>",data);
-      returnArr.push(Object.keys(data))
-      helper = returnArr.forEach((item) => {
-        return helper.push(item)
-      })
-    })
-  }catch (error) {
-    console.log(error)
+export function getData(){
+  let arrayHelper = []
+  const retrievedData = ref(db, 'Estado/')
+  onValue(retrievedData, (snapshot) => {
+  const data = snapshot.val()
+  for (let key in data){
+    arrayHelper.push(parseInt(data[key]))
   }
-  return helper
+  console.log(arrayHelper)
+  return arrayHelper
+})
 }
+
 

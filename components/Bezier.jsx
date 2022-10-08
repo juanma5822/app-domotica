@@ -1,31 +1,30 @@
 import React from "react"
 import { Text, View, SafeAreaView, StyleSheet, Dimensions  } from "react-native"
 import { LineChart, ProgressChart } from "react-native-chart-kit"
+import { Button } from "react-native-web"
 import { getData } from "../connection/connection"
 
-
-
-
-
-
-const Indicator = (props) => {
+const BezierExampleChart = (props) => {
     return (
       <View>
       <Text style={styles.title}>{props.title}</Text>
-      <ProgressChart
+      <LineChart
         data={{
-          labels: ["Temperature", "Humidity", "Pressure", "Optional"], // optional
-          data: [0.6, 0.8, 0.7, 0.5] ,
+          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          datasets: [{
+            data: [ 20, 45, 28, 80, 99, 43 ],
+          },],
         }}
         width={Dimensions.get("window").width - 16} // from react-native
         height={220}
-        yAxisLabel="Temperature"
+        yAxisLabel="Rs"
         chartConfig={{
           backgroundGradientFrom: 'grey',
           backgroundGradientTo: 'grey',
           decimalPlaces: 1, // optional, defaults to 2dp
           color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
         }}
+        bezier
         style = {{
           borderRadius: 16,
         }}
@@ -49,4 +48,4 @@ const styles = StyleSheet.create({
   })
   
   
-  export default Indicator
+  export default BezierExampleChart
