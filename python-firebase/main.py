@@ -1,34 +1,26 @@
-from firebase_admin import db
-from connection import connection
-#import machine
-from time import sleep
+import machine
+import time
+import upip
+import network
 
 
+try:
+    print('connecting to WLAN...')
+    wlan = network.WLAN(network.STA_IF) # create station interface
+    wlan.active(True)       # activate the interface
+    wlan.scan()             # scan for access points
+    wlan.isconnected()      # check if the station is connected to an AP
+    wlan.connect('DACJ', '121053848522') # connect to an AP
+    wlan.config('mac')      # get the interface's MAC address
+    wlan.ifconfig()         # get the interface's IP/netmask/gw/DNS addresses
+    print("Connected.")
+    import firebase, firebase_admin
+except Exception as e:
+    print('Connection Failed..',e)    
+pin = machine.Pin(4, machine.Pin.OUT)
+for i in range(10):
+    pin.on()
+    time.sleep(0.5)
+    pin.off()
+    time.sleep(0.5)
 
-"""sensor_ambiente = machine.Pin(5,machine.Pin.IN)
-sensor_presencia= machine.Pin(4,machine.Pin.IN)
-
-motor_persianas= machine.Pin(14,machine.Pin.OUT)
-luces = machine.Pin(12,machine.Pin.OUT)
-
-led_fb = db.reference('led')
-
-
-if sensor_presencia >=1:
-    sleep(10)
-    if sensor_presencia == 0:
-        luces.off()        
-        led_fb.push(0)"""
-
-
-     
-
-
-ref =db.reference('Productos')
-producto = {'tipo':'micropi','modelo':'Two','pines':'8'}
-producto_ref = ref.push(producto)
-
-
-data = list(ref.get('Productos'))
-print(data)
-print(type(data))
